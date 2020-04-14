@@ -16,15 +16,11 @@ RUN arch="$(dpkg --print-architecture)" \
 
 RUN groupadd -r curator && useradd -r -g curator curator
 
-RUN pip install --quiet elasticsearch-curator
+RUN pip install --quiet -U elasticsearch-curator==5.8
 
 COPY docker-entrypoint.sh /
-#COPY /config/curator.yml /var/curator/curator.yml
-#COPY /action/action.yml /var/curator/action.yml
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["curator"] 
-
-#ENTRYPOINT [ "/usr/local/bin/curator" ]
 
